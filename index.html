@@ -1,100 +1,240 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自我介紹網站</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-    }
-    header {
-      background: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background: #444;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    section {
-      padding: 20px;
-    }
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後端工程師 - 自我介紹</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family: "Microsoft JhengHei", sans-serif;
+            background:#111;
+            color:white;
+        }
+
+        /* 主畫面 */
+        .hero{
+            height:100vh;
+            background-image:
+            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
+            url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4');
+
+            background-size:cover;
+            background-position:center;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+            padding:20px;
+        }
+
+        .hero-content h1{
+            font-size:70px;
+            margin-bottom:20px;
+        }
+
+        .hero-content p{
+            font-size:24px;
+            margin-bottom:30px;
+            color:#ddd;
+        }
+
+        .btn{
+            display:inline-block;
+            padding:15px 35px;
+            background:#00bfff;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+            transition:0.3s;
+            font-size:20px;
+        }
+
+        .btn:hover{
+            background:#0099cc;
+            transform:scale(1.05);
+        }
+
+        /* 關於我 */
+        .about{
+            padding:100px 10%;
+            background:#1a1a1a;
+        }
+
+        .about h2{
+            font-size:40px;
+            margin-bottom:30px;
+            text-align:center;
+        }
+
+        .about p{
+            max-width:900px;
+            margin:auto;
+            line-height:2;
+            font-size:20px;
+            color:#ddd;
+        }
+
+        /* 技能區 */
+        .skills{
+            padding:100px 10%;
+            background:#111;
+        }
+
+        .skills h2{
+            text-align:center;
+            font-size:40px;
+            margin-bottom:50px;
+        }
+
+        .skill-box{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:30px;
+        }
+
+        .card{
+            background:#1f1f1f;
+            padding:40px;
+            border-radius:20px;
+            transition:0.3s;
+            text-align:center;
+        }
+
+        .card:hover{
+            transform:translateY(-10px);
+            background:#292929;
+        }
+
+        .card h3{
+            margin-bottom:20px;
+            color:#00bfff;
+        }
+
+        .card p{
+            color:#ccc;
+            line-height:1.8;
+        }
+
+        /* 頁尾 */
+        footer{
+            background:#000;
+            text-align:center;
+            padding:30px;
+            color:#777;
+        }
+
+        @media(max-width:768px){
+
+            .hero-content h1{
+                font-size:45px;
+            }
+
+            .hero-content p{
+                font-size:18px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 <body>
-  <header>
-    <h1>帥阿志的個人網站</h1>
-    <p>歡迎來到我的自我介紹頁面！</p>
-  </header>
 
-  <nav>
-    <a href="#about">關於我</a>
-    <a href="#skills">技能專長</a>
-    <a href="#experience">經歷</a>
-    <a href="#portfolio">作品集</a>
-    <a href="#contact">聯絡我</a>
-  </nav>
+    <!-- 主畫面 -->
+    <section class="hero">
 
-  <section id="about">
-    <h2>關於我</h2>
-    <p>我是帥阿志，一名熱愛程式設計與烘焙的前端工程師。</p>
-  </section>
+        <div class="hero-content">
 
-  <section id="skills">
-    <h2>技能專長</h2>
-    <ul>
-      <li>HTML / CSS / JavaScript</li>
-      <li>React / Vue 前端框架</li>
-      <li>Node.js 後端基礎</li>
-      <li>UI/UX 設計概念</li>
-    </ul>
-  </section>
+            <h1>後端工程師</h1>
 
-  <section id="experience">
-    <h2>經歷</h2>
-    <ul>
-      <li>2022–至今：某科技公司前端工程師</li>
-      <li>2020–2022：自由接案網頁設計師</li>
-      <li>2018–2020：大學資訊工程系畢業專題與研究</li>
-    </ul>
-  </section>
+            <p>
+                Java ｜ MySQL ｜ Linux ｜ AWS ｜ CCNA
+            </p>
 
-  <section id="portfolio">
-    <h2>作品集</h2>
-    <ul>
-      <li>個人部落格：分享程式學習心得</li>
-      <li>攝影作品集：旅行中的風景與人文紀錄</li>
-      <li>前端專案：互動式網頁應用程式展示</li>
-    </ul>
-  </section>
+            <a href="#about" class="btn">
+                關於我
+            </a>
 
-  <section id="contact">
-    <h2>聯絡我</h2>
-    <p>Email: example@email.com</p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/example" target="_blank">linkedin.com/in/example</a></p>
-    <p>GitHub: <a href="https://github.com/example" target="_blank">github.com/example</a></p>
-  </section>
+        </div>
 
-  <footer>
-    <p>© 2026 帥阿志. All rights reserved.</p>
-  </footer>
+    </section>
+
+    <!-- 關於我 -->
+    <section class="about" id="about">
+
+        <h2>自我介紹</h2>
+
+        <p>
+            我是一位正在學習後端技術的新手工程師，
+            目前專注於 Java、MySQL、Linux 與網路技術。
+
+            因為疫情影響而轉職投入資訊領域，
+            在學習 CCNA、Linux 與程式設計過程中，
+            對後端開發產生濃厚興趣。
+
+            目前持續學習資料庫、API 與伺服器架設，
+            希望未來成為能獨立開發系統的後端工程師。
+        </p>
+
+    </section>
+
+    <!-- 技能 -->
+    <section class="skills">
+
+        <h2>技能</h2>
+
+        <div class="skill-box">
+
+            <div class="card">
+                <h3>Java</h3>
+                <p>
+                    學習 Java 基礎語法、
+                    OOP、陣列、迴圈與物件導向。
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>MySQL</h3>
+                <p>
+                    了解資料表建立、
+                    CRUD、JOIN 與 SQL 基本操作。
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Linux</h3>
+                <p>
+                    熟悉 Linux 指令、
+                    權限設定與基本伺服器操作。
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Network</h3>
+                <p>
+                    具備 CCNA 網路基礎，
+                    了解 Router、Switch 與 TCP/IP。
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- 頁尾 -->
+    <footer>
+        © 2026 Backend Engineer Portfolio
+    </footer>
+
 </body>
 </html>
