@@ -1,240 +1,934 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>後端工程師 - 自我介紹</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chou｜後端工程師作品集</title>
+  <meta name="description" content="Chou 的後端工程師求職作品集，展示 Java、MySQL、Linux 相關專案與學習成果。" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --text-main: #f9fafb;
+      --text-sub: #9ca3af;
+      --card-bg: rgba(15, 23, 42, 0.9);
+      --border-soft: rgba(148, 163, 184, 0.3);
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --transition-fast: 0.2s ease-out;
+      --transition-med: 0.28s ease-out;
+      --max-width: 1040px;
+    }
 
-    <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-        }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1d2438 0, #020617 55%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+    }
 
-        body{
-            font-family: "Microsoft JhengHei", sans-serif;
-            background:#111;
-            color:white;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        /* 主畫面 */
-        .hero{
-            height:100vh;
-            background-image:
-            linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)),
-            url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4');
+    main {
+      min-height: 100vh;
+      padding: 32px 16px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
 
-            background-size:cover;
-            background-position:center;
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
 
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            text-align:center;
-            padding:20px;
-        }
+    header {
+      border-radius: 28px;
+      padding: 20px 22px;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), transparent 45%),
+                  rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(28px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
 
-        .hero-content h1{
-            font-size:70px;
-            margin-bottom:20px;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-        .hero-content p{
-            font-size:24px;
-            margin-bottom:30px;
-            color:#ddd;
-        }
+    .brand-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8 0, #0ea5e9 35%, #6366f1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b1120;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 20px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+    }
 
-        .btn{
-            display:inline-block;
-            padding:15px 35px;
-            background:#00bfff;
-            color:white;
-            text-decoration:none;
-            border-radius:10px;
-            transition:0.3s;
-            font-size:20px;
-        }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-        .btn:hover{
-            background:#0099cc;
-            transform:scale(1.05);
-        }
+    .brand-text .name {
+      font-size: 18px;
+      font-weight: 600;
+    }
 
-        /* 關於我 */
-        .about{
-            padding:100px 10%;
-            background:#1a1a1a;
-        }
+    .brand-text .role {
+      font-size: 13px;
+      color: var(--text-sub);
+    }
 
-        .about h2{
-            font-size:40px;
-            margin-bottom:30px;
-            text-align:center;
-        }
+    nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      font-size: 14px;
+    }
 
-        .about p{
-            max-width:900px;
-            margin:auto;
-            line-height:2;
-            font-size:20px;
-            color:#ddd;
-        }
+    nav a {
+      color: var(--text-sub);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast);
+    }
 
-        /* 技能區 */
-        .skills{
-            padding:100px 10%;
-            background:#111;
-        }
+    nav a:hover {
+      border-color: rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+    }
 
-        .skills h2{
-            text-align:center;
-            font-size:40px;
-            margin-bottom:50px;
-        }
+    nav a.primary-link {
+      color: #0f172a;
+      background: linear-gradient(135deg, #38bdf8, #22d3ee);
+      font-weight: 600;
+      padding: 7px 14px;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+    }
 
-        .skill-box{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:30px;
-        }
+    nav a.primary-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(56, 189, 248, 0.5);
+    }
 
-        .card{
-            background:#1f1f1f;
-            padding:40px;
-            border-radius:20px;
-            transition:0.3s;
-            text-align:center;
-        }
+    /* hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 3fr 2.3fr;
+      gap: 28px;
+      align-items: stretch;
+    }
 
-        .card:hover{
-            transform:translateY(-10px);
-            background:#292929;
-        }
+    .hero-main {
+      border-radius: 24px;
+      padding: 24px 24px 22px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96)),
+                  radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 55%);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
 
-        .card h3{
-            margin-bottom:20px;
-            color:#00bfff;
-        }
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(251, 113, 133, 0.12), transparent 55%);
+      pointer-events: none;
+    }
 
-        .card p{
-            color:#ccc;
-            line-height:1.8;
-        }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 11px 4px 4px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-sub);
+      font-size: 12px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* 頁尾 */
-        footer{
-            background:#000;
-            text-align:center;
-            padding:30px;
-            color:#777;
-        }
+    .hero-kicker-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8 0, #0ea5e9 40%, #6366f1 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #0f172a;
+      font-weight: 700;
+      box-shadow: 0 10px 28px rgba(56, 189, 248, 0.5);
+    }
 
-        @media(max-width:768px){
+    .hero-title {
+      font-size: clamp(26px, 4vw, 32px);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      margin: 0 0 10px;
+      position: relative;
+      z-index: 1;
+    }
 
-            .hero-content h1{
-                font-size:45px;
-            }
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin: 0 0 16px;
+      max-width: 520px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
 
-            .hero-content p{
-                font-size:18px;
-            }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
 
-        }
+    .hero-tag {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-sub);
+    }
 
-    </style>
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 10px;
+    }
 
+    .btn-primary {
+      border-radius: 999px;
+      padding: 9px 18px;
+      border: none;
+      background: linear-gradient(135deg, #38bdf8, #22d3ee);
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 35px rgba(56, 189, 248, 0.5);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+    }
+
+    .btn-primary span {
+      font-size: 13px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.6);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 8px 14px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-sub);
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-main);
+      border-color: rgba(148, 163, 184, 0.8);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 14px;
+      margin-top: 10px;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-sub);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.5);
+    }
+
+    /* side card */
+    .hero-side {
+      border-radius: 24px;
+      padding: 18px 18px 16px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-side-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .hero-side-title {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-side-title-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22d3ee;
+      box-shadow: 0 0 8px rgba(34, 211, 238, 0.9);
+    }
+
+    .hero-side-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .hero-side-taglist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .hero-side-tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* sections */
+    section {
+      border-radius: 22px;
+      padding: 20px 20px 18px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+    }
+
+    section + section {
+      margin-top: 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #38bdf8;
+      box-shadow: 0 0 6px rgba(56, 189, 248, 0.7);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    /* about */
+    .about-body {
+      font-size: 14px;
+      color: var(--text-sub);
+      line-height: 1.7;
+    }
+
+    /* projects */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .project {
+      border-radius: 16px;
+      padding: 12px 12px 11px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 2fr);
+      gap: 8px;
+    }
+
+    .project-header {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: var(--text-sub);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .project-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .project-tag {
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-sub);
+    }
+
+    .project-body {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .project-body strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .skill-card {
+      border-radius: 14px;
+      padding: 10px 10px 9px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 12px;
+      color: var(--text-sub);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .skill-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .skill-sub {
+      font-size: 11px;
+    }
+
+    /* contact */
+    .contact-body {
+      font-size: 13px;
+      color: var(--text-sub);
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .contact-chip {
+      font-size: 12px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-chip span {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    footer a {
+      color: #9ca3af;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+    }
+
+    /* responsive */
+    @media (max-width: 840px) {
+      main {
+        padding-top: 20px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main {
+        order: 1;
+      }
+
+      .hero-side {
+        order: 2;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 16px 14px;
+      }
+
+      .hero-main {
+        padding: 18px 16px 16px;
+      }
+
+      section {
+        padding: 16px 14px 14px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <main>
+    <div class="shell">
+      <!-- 頂部導覽 -->
+      <header>
+        <div class="brand">
+          <div class="brand-avatar">C</div>
+          <div class="brand-text">
+            <div class="name">Chou</div>
+            <div class="role">後端工程師求職作品集</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#about">關於我</a>
+          <a href="#projects">專案作品</a>
+          <a href="#skills">技能</a>
+          <a href="#contact" class="primary-link">聯絡我</a>
+        </nav>
+      </header>
 
-    <!-- 主畫面 -->
-    <section class="hero">
+      <!-- 首屏 Hero -->
+      <section class="hero" aria-label="Hero">
+        <div class="hero-main">
+          <div class="hero-kicker">
+            <div class="hero-kicker-dot">IN</div>
+            <span>轉職中 · Backend Developer</span>
+          </div>
+          <h1 class="hero-title">
+            Java 後端工程師｜Chou 的求職作品集
+          </h1>
+          <p class="hero-subtitle">
+            正在累積 Java、資料庫與 Linux 實作經驗，透過具體專案練習 API、資料表設計與基礎部署，希望加入團隊一起打造穩定好維護的後端服務。
+          </p>
 
-        <div class="hero-content">
+          <div class="hero-tags">
+            <span class="hero-tag">Java</span>
+            <span class="hero-tag">MySQL</span>
+            <span class="hero-tag">Linux</span>
+            <span class="hero-tag">Network / CCNA</span>
+          </div>
 
-            <h1>後端工程師</h1>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">
+              立即查看專案
+              <span>↓</span>
+            </button>
+            <button class="btn-ghost" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+              聯絡方式
+            </button>
+          </div>
 
+          <div class="hero-meta">
+            <span>
+              <dot></dot>
+              對後端、系統與網路有高度興趣
+            </span>
+            <span>
+              <dot></dot>
+              持續學習並整理成作品集
+            </span>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <div class="hero-side-header">
+            <div class="hero-side-title">
+              <span class="hero-side-title-dot"></span>
+              求職目標
+            </div>
+            <span style="color: var(--text-sub); font-size: 11px;">Backend / Junior Level</span>
+          </div>
+          <div class="hero-side-body">
             <p>
-                Java ｜ MySQL ｜ Linux ｜ AWS ｜ CCNA
+              希望應徵後端工程師或具後端成分的職缺，願意從基礎任務開始，熟悉團隊開發流程與實務工具。
             </p>
+            <div class="hero-side-taglist">
+              <span class="hero-side-tag">Java 後端</span>
+              <span class="hero-side-tag">API 開發</span>
+              <span class="hero-side-tag">資料庫操作</span>
+              <span class="hero-side-tag">Linux 環境</span>
+            </div>
+          </div>
+        </aside>
+      </section>
 
-            <a href="#about" class="btn">
-                關於我
+      <!-- 關於我 -->
+      <section id="about" aria-label="About">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            關於我
+          </div>
+          <div class="section-subtitle">
+            簡短說明背景與學習方向
+          </div>
+        </div>
+        <div class="about-body">
+          <p>
+            我是 Chou，目前以成為後端工程師為目標，專注在 Java、MySQL、Linux 以及網路相關知識的學習與實作。透過練習專案，我習慣先理解需求，再拆解成可實作的功能，逐步完成並整理紀錄。
+          </p>
+          <p>
+            我重視程式碼可讀性與基礎概念，會在練習中反覆調整結構與命名，讓未來維護更容易。也因為有網路與 CCNA 相關背景，對 HTTP、TCP/IP、Routing 等觀念有基本認識，期待能在實務中持續加深。
+          </p>
+        </div>
+      </section>
+
+      <!-- 專案作品 -->
+      <section id="projects" aria-label="Projects">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            專案作品
+          </div>
+          <div class="section-subtitle">
+            用具體專案展示後端與資料庫能力
+          </div>
+        </div>
+
+        <div class="projects-list">
+          <!-- 專案 1 -->
+          <article class="project">
+            <div class="project-header">
+              <div class="project-name">會員管理系統（練習專案）</div>
+              <div class="project-meta">
+                <span>角色：個人開發</span>
+                <span>狀態：持續優化中</span>
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Java</span>
+                <span class="project-tag">MySQL</span>
+                <span class="project-tag">CRUD</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <p>
+                <strong>專案內容：</strong>練習設計一個簡單的會員管理系統，包含新增、查詢、更新、刪除會員資料等功能，藉由實作熟悉 CRUD 流程與資料表設計。
+              </p>
+              <p>
+                <strong>負責內容：</strong>使用 Java 撰寫基本後端邏輯，搭配 MySQL 建立資料表結構與關聯，並撰寫 SQL 來完成資料操作。
+              </p>
+              <p>
+                <strong>學到的重點：</strong>更理解資料表欄位與索引設計的重要性，以及在程式邏輯中如何處理例外狀況與錯誤訊息。
+              </p>
+            </div>
+          </article>
+
+          <!-- 專案 2 -->
+          <article class="project">
+            <div class="project-header">
+              <div class="project-name">簡易 API 練習（RESTful 概念）</div>
+              <div class="project-meta">
+                <span>角色：個人開發</span>
+                <span>類型：學習型專案</span>
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Java</span>
+                <span class="project-tag">HTTP</span>
+                <span class="project-tag">JSON</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <p>
+                <strong>專案內容：</strong>透過撰寫簡單的 API 介面，練習處理請求、回傳 JSON 資料，並理解 HTTP 方法（GET / POST / PUT / DELETE）的使用情境。
+              </p>
+              <p>
+                <strong>負責內容：</strong>設計基本的 API 結構，實作參數驗證與錯誤訊息格式，讓回應內容更一致且容易除錯。
+              </p>
+              <p>
+                <strong>學到的重點：</strong>建立起對 RESTful API 的初步認識，了解不同 HTTP 方法在資源操作上的差異。
+              </p>
+            </div>
+          </article>
+
+          <!-- 專案 3 -->
+          <article class="project">
+            <div class="project-header">
+              <div class="project-name">Linux 環境練習（部署與指令）</div>
+              <div class="project-meta">
+                <span>角色：個人練習</span>
+                <span>主題：系統操作</span>
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Linux</span>
+                <span class="project-tag">Shell</span>
+                <span class="project-tag">Server</span>
+              </div>
+            </div>
+            <div class="project-body">
+              <p>
+                <strong>專案內容：</strong>在 Linux 環境中練習基本指令操作、檔案權限設定，以及簡單的服務啟動與管理，為日後部署後端服務做準備。
+              </p>
+              <p>
+                <strong>負責內容：</strong>建立使用者、設定檔案權限、安裝必要套件，並撰寫簡單腳本協助操作。
+              </p>
+              <p>
+                <strong>學到的重點：</strong>更熟悉命令列操作與系統結構，理解檔案權限與服務管理對系統穩定性的影響。
+              </p>
+            </div>
+          </article>
+
+          <!-- TODO: 你可以在這裡繼續新增其他專案 -->
+        </div>
+      </section>
+
+      <!-- 技能 -->
+      <section id="skills" aria-label="Skills">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            技能與學習重點
+          </div>
+          <div class="section-subtitle">
+            以實作經驗為主的技能整理
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-title">Java</div>
+            <div class="skill-sub">基礎語法、OOP、陣列與迴圈</div>
+            <div>
+              已完成多個小型練習專案，練習物件導向思維與程式結構拆分。
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">MySQL</div>
+            <div class="skill-sub">資料表設計與 CRUD 操作</div>
+            <div>
+              能撰寫基本 SELECT、INSERT、UPDATE、DELETE，以及簡單的 JOIN 查詢。
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Linux</div>
+            <div class="skill-sub">指令操作與基本環境設定</div>
+            <div>
+              熟悉常用指令、檔案權限與簡單服務管理，能在終端機中完成基本操作。
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Network / CCNA</div>
+            <div class="skill-sub">網路基礎概念</div>
+            <div>
+              了解 TCP/IP 架構、Routing 與 Switch 基本運作，對 HTTP 通訊有初步理解。
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">Git / 版本控制</div>
+            <div class="skill-sub">基本指令與分支操作</div>
+            <div>
+              能使用 Git 管理練習專案版本，熟悉 commit、branch 與 push 等操作。
+            </div>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-title">持續學習</div>
+            <div class="skill-sub">紀錄與反思</div>
+            <div>
+              會將每次練習的重點整理成筆記，回頭檢查觀念與程式結構是否可以再優化。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 聯絡方式 -->
+      <section id="contact" aria-label="Contact">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="section-title-dot"></span>
+            聯絡我
+          </div>
+          <div class="section-subtitle">
+            歡迎聯絡我進一步聊聊
+          </div>
+        </div>
+
+        <div class="contact-body">
+          <p>
+            如果你對我的專案或學習方向有興趣，歡迎透過下列方式聯絡我。非常期待能在實際團隊中累積更多後端開發經驗，也願意從初階任務開始，一步步扎實學習。
+          </p>
+          <div class="contact-links">
+            <a class="contact-chip" href="mailto:your-email@example.com">
+              Email
+              <span>your-email@example.com</span>
             </a>
-
+            <a class="contact-chip" href="https://github.com/你的帳號" target="_blank" rel="noreferrer">
+              GitHub
+              <span>github.com/你的帳號</span>
+            </a>
+            <a class="contact-chip" href="#" target="_blank" rel="noreferrer">
+              履歷（PDF）
+              <span>下載連結</span>
+            </a>
+          </div>
         </div>
+      </section>
 
-    </section>
-
-    <!-- 關於我 -->
-    <section class="about" id="about">
-
-        <h2>自我介紹</h2>
-
-        <p>
-            我是一位正在學習後端技術的新手工程師，
-            目前專注於 Java、MySQL、Linux 與網路技術。
-
-            因為疫情影響而轉職投入資訊領域，
-            在學習 CCNA、Linux 與程式設計過程中，
-            對後端開發產生濃厚興趣。
-
-            目前持續學習資料庫、API 與伺服器架設，
-            希望未來成為能獨立開發系統的後端工程師。
-        </p>
-
-    </section>
-
-    <!-- 技能 -->
-    <section class="skills">
-
-        <h2>技能</h2>
-
-        <div class="skill-box">
-
-            <div class="card">
-                <h3>Java</h3>
-                <p>
-                    學習 Java 基礎語法、
-                    OOP、陣列、迴圈與物件導向。
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>MySQL</h3>
-                <p>
-                    了解資料表建立、
-                    CRUD、JOIN 與 SQL 基本操作。
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Linux</h3>
-                <p>
-                    熟悉 Linux 指令、
-                    權限設定與基本伺服器操作。
-                </p>
-            </div>
-
-            <div class="card">
-                <h3>Network</h3>
-                <p>
-                    具備 CCNA 網路基礎，
-                    了解 Router、Switch 與 TCP/IP。
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- 頁尾 -->
-    <footer>
-        © 2026 Backend Engineer Portfolio
-    </footer>
-
+      <footer>
+        本頁為 Chou 的後端工程師求職作品集，內容持續更新中。<br />
+        若有任何建議或機會，歡迎來信聯繫。
+      </footer>
+    </div>
+  </main>
 </body>
 </html>
