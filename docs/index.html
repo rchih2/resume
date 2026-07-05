@@ -784,20 +784,81 @@
 
       <article class="project">
         <div class="project-top">
-          <div class="project-name">會員管理系統</div>
+          <div class="project-name">甜點快速下單系統（Java Swing 桌面應用）</div>
           <span class="status-pill on">已完成</span>
         </div>
         <div class="project-tags" style="margin-bottom:10px;">
           <span class="ptag">Java</span>
-          <span class="ptag">MySQL</span>
+          <span class="ptag">Swing</span>
           <span class="ptag">JDBC</span>
+          <span class="ptag">MySQL</span>
+          <span class="ptag">MVC</span>
         </div>
-        <p class="project-desc">以會員資料為核心的 CRUD 練習專案，用於熟悉關聯式資料庫的資料表設計與後端基本邏輯。</p>
+        <p class="project-desc">以 Java Swing 開發的甜點快速下單桌面系統，使用者可挑選品項、即時計算金額並將訂單寫入 MySQL 資料庫，採用 MVC 分層架構並具備雙層輸入驗證機制。</p>
         <ul class="project-bullets">
-          <li>使用 Java 撰寫服務邏輯，並以 MySQL 設計資料表結構與索引。</li>
-          <li>針對常見輸入例外情境撰寫對應的錯誤處理與訊息回饋。</li>
-          <li><span class="k">學習成果：</span>建立起資料表設計、SQL 操作與例外處理三者之間的完整概念，作為後續專案的基礎。</li>
+          <li>使用 <span class="k">Java Swing</span> 建立 GUI 介面，左側可選購 5 種甜點品項與數量，中間即時顯示購物車內容與金額試算。</li>
+          <li>實作<span class="k">金額計算邏輯</span>：自動計算小計、運費，並依滿 NT$2000 免運門檻動態顯示運費或免運提示。</li>
+          <li>右側收集客戶資料（姓名、電話、LINE 帳號、下單時間），送出前於 <span class="k">畫面層</span> 與 <span class="k">控制器層</span> 分別進行輸入驗證，確保資料格式正確。</li>
+          <li>採 <span class="k">MVC 分層設計</span>：MainFrame 負責畫面與金額運算，UserController 負責商業邏輯驗證，UserDAOImpl 透過 JDBC 將訂單寫入 MySQL。</li>
+          <li>以 <span class="k">DBConnectionPool</span> 讀取 db.properties 管理資料庫連線設定，訂單資料寫入 dessert_db 的 orders 資料表，欄位涵蓋客戶資訊、各品項數量與金額明細。</li>
+          <li>完善的<span class="k">例外處理</span>：輸入不合法或資料庫寫入失敗時，皆會跳出對應的錯誤提示視窗，確保使用者能明確得知失敗原因。</li>
         </ul>
+
+        <div class="diagram-wrap">
+          <svg viewBox="0 0 760 260" role="img" width="100%" style="display:block;">
+            <title>甜點快速下單系統資料流程圖</title>
+            <desc>使用者透過 Main 啟動 GUI，於 MainFrame 輸入資料並計算金額，經 UserController 驗證後，由 UserDAOImpl 透過 DBConnectionPool 取得的連線，以 JDBC 將訂單寫入 MySQL 的 orders 資料表。</desc>
+            <defs>
+              <marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M2 1L8 5L2 9" fill="none" stroke="#8a97a3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </marker>
+            </defs>
+
+            <!-- Main -->
+            <rect x="15" y="90" width="110" height="60" rx="8" fill="#141a22" stroke="#576270" stroke-width="0.5"/>
+            <text x="70" y="115" text-anchor="middle" fill="#e8edf2" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">Main</text>
+            <text x="70" y="132" text-anchor="middle" fill="#8a97a3" font-family="JetBrains Mono, monospace" font-size="9.5">啟動 GUI</text>
+
+            <!-- MainFrame -->
+            <rect x="160" y="80" width="140" height="80" rx="8" fill="rgba(255,180,84,0.14)" stroke="#ffb454" stroke-width="0.7"/>
+            <text x="230" y="105" text-anchor="middle" fill="#ffb454" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">MainFrame</text>
+            <text x="230" y="122" text-anchor="middle" fill="#e0a35f" font-family="JetBrains Mono, monospace" font-size="9.5">收集輸入</text>
+            <text x="230" y="137" text-anchor="middle" fill="#e0a35f" font-family="JetBrains Mono, monospace" font-size="9.5">金額 / 運費計算</text>
+
+            <!-- UserController -->
+            <rect x="335" y="80" width="150" height="80" rx="8" fill="rgba(183,148,246,0.16)" stroke="#b794f6" stroke-width="0.7"/>
+            <text x="410" y="105" text-anchor="middle" fill="#b794f6" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">UserController</text>
+            <text x="410" y="122" text-anchor="middle" fill="#a685dd" font-family="JetBrains Mono, monospace" font-size="9.5">姓名 / 電話</text>
+            <text x="410" y="137" text-anchor="middle" fill="#a685dd" font-family="JetBrains Mono, monospace" font-size="9.5">LINE 驗證</text>
+
+            <!-- UserDAOImpl -->
+            <rect x="520" y="80" width="140" height="80" rx="8" fill="rgba(125,211,252,0.14)" stroke="#7dd3fc" stroke-width="0.7"/>
+            <text x="590" y="105" text-anchor="middle" fill="#7dd3fc" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">UserDAOImpl</text>
+            <text x="590" y="122" text-anchor="middle" fill="#6bb8d9" font-family="JetBrains Mono, monospace" font-size="9.5">JDBC</text>
+            <text x="590" y="137" text-anchor="middle" fill="#6bb8d9" font-family="JetBrains Mono, monospace" font-size="9.5">寫入訂單</text>
+
+            <!-- DBConnectionPool -->
+            <rect x="480" y="180" width="150" height="55" rx="8" fill="rgba(110,231,183,0.14)" stroke="#6ee7b7" stroke-width="0.7"/>
+            <text x="555" y="203" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">DBConnectionPool</text>
+            <text x="555" y="219" text-anchor="middle" fill="#7fcfae" font-family="JetBrains Mono, monospace" font-size="9.5">讀取 db.properties</text>
+
+            <!-- MySQL -->
+            <rect x="655" y="180" width="105" height="55" rx="8" fill="#141a22" stroke="#576270" stroke-width="0.5"/>
+            <text x="707" y="203" text-anchor="middle" fill="#e8edf2" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">MySQL</text>
+            <text x="707" y="219" text-anchor="middle" fill="#8a97a3" font-family="JetBrains Mono, monospace" font-size="9.5">orders 資料表</text>
+
+            <!-- arrows main chain -->
+            <line x1="125" y1="120" x2="158" y2="120" stroke="#8a97a3" stroke-width="1" marker-end="url(#ah2)"/>
+            <line x1="300" y1="120" x2="333" y2="120" stroke="#8a97a3" stroke-width="1" marker-end="url(#ah2)"/>
+            <line x1="485" y1="120" x2="518" y2="120" stroke="#8a97a3" stroke-width="1" marker-end="url(#ah2)"/>
+
+            <!-- UserDAOImpl to DBConnectionPool -->
+            <line x1="590" y1="160" x2="565" y2="178" stroke="#8a97a3" stroke-width="1" marker-end="url(#ah2)"/>
+            <!-- DBConnectionPool to MySQL -->
+            <line x1="630" y1="207" x2="653" y2="207" stroke="#8a97a3" stroke-width="1" marker-end="url(#ah2)"/>
+          </svg>
+          <div class="diagram-caption">資料流程：Main 啟動 → MainFrame 輸入與金額計算 → UserController 驗證 → UserDAOImpl 透過 DBConnectionPool 連線 → 寫入 MySQL orders 資料表</div>
+        </div>
       </article>
 
       <article class="project">
@@ -890,6 +951,13 @@
             <div class="skill-desc">映像檔建置與多服務容器編排，建立可重現的開發環境。</div>
           </div>
           <div class="skill-row">
+            <div class="skill-name"><span class="dot"></span>AWS</div>
+            <div class="skill-meter">
+              <span class="meter-seg fill"></span><span class="meter-seg fill"></span><span class="meter-seg"></span><span class="meter-seg"></span><span class="meter-seg"></span>
+            </div>
+            <div class="skill-desc">建立並操作 RDS for MySQL 執行個體，具備 VPC、安全群組設定與快照備份還原的實作經驗。</div>
+          </div>
+          <div class="skill-row">
             <div class="skill-name"><span class="dot"></span>網路基礎（CCNA）</div>
             <div class="skill-meter">
               <span class="meter-seg fill"></span><span class="meter-seg fill"></span><span class="meter-seg"></span><span class="meter-seg"></span><span class="meter-seg"></span>
@@ -903,11 +971,11 @@
         <div class="skill-group-title">工具鏈</div>
         <div class="skill-rows">
           <div class="skill-row">
-            <div class="skill-name"><span class="dot"></span>Git</div>
+            <div class="skill-name"><span class="dot"></span>Maven</div>
             <div class="skill-meter">
               <span class="meter-seg fill"></span><span class="meter-seg fill"></span><span class="meter-seg fill"></span><span class="meter-seg"></span><span class="meter-seg"></span>
             </div>
-            <div class="skill-desc">日常版本控制操作，包含 commit、branch、push 與合併處理。</div>
+            <div class="skill-desc">專案建置與相依套件管理，能排除版本衝突並設定 pom.xml 建置流程。</div>
           </div>
         </div>
       </div>
